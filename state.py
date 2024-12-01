@@ -7,8 +7,13 @@ class State:
     def __init__(self,array1,array2,arlist3goal,instate):
         self.boald=array1
         self.colorsquare=array2
-        self.goalsquare=arlist3goal
+        self.goalsquare = arlist3goal
         self.perentstate=instate
+
+    def heuristic(self):
+        # عدد العناصر في الأماكن الخاطئة
+        mismatch = py.sum(self.colorsquare != self.goalsquare)  # استخدم numpy لمقارنة المصفوفات
+        return mismatch    
         #   مشان المقارنة الاوبجكتات 
     def __eq__(self, other):
         return (py.array_equal(self.colorsquare, other.colorsquare) and
@@ -388,7 +393,20 @@ class State:
                 else:    
                     print(self.colorsquare[i][j],end=' ')  
             print("")      
-        
+
+    # def heuristic(self):
+    #     # مثال بسيط: عدد العناصر في الأماكن الخاطئة
+    #     mismatch = 0
+    #     for i in range(len(self.goalsquare)):
+    #         if self.colorsquare[i] != self.goalsquare[i]:
+    #             mismatch += 1
+    #     return mismatch
+    # def calculate_distance_to_goal(self):
+    #     return sum(
+    #         1 for i in range(len(self.array1))
+    #         for j in range(len(self.array1[0]))
+    #         if self.array1[i][j] != self.goal_array[i][j]
+        # )   
         
 
     
